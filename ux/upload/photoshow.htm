@@ -1,0 +1,67 @@
+﻿<!DOCTYPE>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.artZoom.js"></script>
+    <link rel="stylesheet" href="css/jquery.artZoom.css"  type="text/css" />
+
+    <script type="text/javascript">
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return unescape(r[2]); return null; //返回参数值
+        }
+
+        $(function () {
+            //获得url中filesrc的参数值
+            var ps = getUrlParam('filesrc').split('.');
+            ps[ps.length - 2] = ps[ps.length - 2] + '_big';
+            ps = ps.join('.');
+
+            var photosrc = 'http://'+window.location.host + '/' + getUrlParam('filesrc'),
+                  photosrc_big = 'http://'+window.location.host + '/' + ps,
+                  width = getUrlParam('width'),
+                  height = getUrlParam('height');
+            //alert(photosrc_big);
+            $('#photo').html('<a href="' + photosrc + '" rel="' + photosrc + '"><img class="artZoom"  width="'+width+'px" height="'+height+'px" src="' + photosrc + '" /></a>');
+
+            $('.artZoom').artZoom({
+                preload: true, 	// 设置是否提前缓存视野内的大图片
+                blur: true, 		// 设置加载大图是否有模糊变清晰的效果
+                left: '左旋转', 	// 左旋转按钮文字
+                right: '右旋转', 	// 右旋转按钮文字
+                source: '看原图'		// 查看原图按钮文字
+            });
+        });
+
+    </script>
+
+    <style type="text/css">
+        .artZoom {
+	        padding:3px;
+	        background:#FFF;
+	        border:1px solid #EBEBEB;
+        }
+        body {
+	        font-size:75%;
+	        font-family:'微软雅黑';
+	        padding-bottom:200px;
+        }
+        img {
+	        border:0 none;
+        }
+        #photo {
+	        padding:5px;
+	        background:#FBFCFD;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <div id="photo">
+            <!--<a href="images/01.jpg" rel="images/01.jpg"><img class="artZoom initSize" src="images/01.jpg" /></a>-->
+        </div>
+    </center>
+</body>
+</html>

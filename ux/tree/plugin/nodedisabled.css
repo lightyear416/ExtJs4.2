@@ -1,0 +1,13 @@
+/* = disabled nodes
+----------------------------------------------- */
+.dvp-tree-node-disabled .x-grid-cell {
+    -moz-opacity: 0.3;
+   opacity:.3;
+   filter: alpha(opacity=30);
+}
+
+.tree-node-disabled .x-grid-cell {
+	-moz-opacity: 0.3;
+   opacity:.3;
+   filter: alpha(opacity=30);
+}
